@@ -1,6 +1,6 @@
 {
   "name": "exactly",
-  "version": "0.0.2",
+  "version": "0.0.2-2",
   "description": "A hacky wrapper around npm to shrinkwrap by content hash",
   "main": "index.js",
   "bin": "index.js",
