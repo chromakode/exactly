@@ -48,9 +48,10 @@ function afterAdd (er, data, next) {
     return next(new Error('exactly: missing exactlyHashes in npm-shrinkwrap.json. aborting.'))
   }
 
-  var expectedHash = pd.exactlyHashes[data.name]
+  var pkgName = data.name + '@' + data.version
+  var expectedHash = pd.exactlyHashes[pkgName]
   if (expectedHash !== data._shasum) {
-    return next(new Error('exactly: mismatched package hash: ' + data.name + '\n    expected: ' + expectedHash + '\n    got: ' + data._shasum))
+    return next(new Error('exactly: mismatched package hash: ' + pkgName + '\n    expected: ' + expectedHash + '\n    got: ' + data._shasum))
   }
 
   log.info('exactly', 'shasum matched: ' + expectedHash)
@@ -62,7 +63,7 @@ function walkTreeForHashes (topNode) {
   var hashes = {}
   function visit (node) {
     if (node !== topNode) {
-      hashes[node.package.name] = node.package._shasum
+      hashes[node.package.name + '@' + node.package.version] = node.package._shasum
     }
     node.children.forEach(visit)
   }
