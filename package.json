@@ -1,0 +1,29 @@
+{
+  "name": "exactly",
+  "version": "0.0.1",
+  "description": "A hacky wrapper around npm to shrinkwrap by content hash",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "lint": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chromakode/exactly.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Max Goodman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chromakode/exactly/issues"
+  },
+  "homepage": "https://github.com/chromakode/exactly",
+  "dependencies": {
+    "npm": "~3.8.3"
+  },
+  "devDependencies": {
+    "standard": "~6.0.8"
+  }
+}
