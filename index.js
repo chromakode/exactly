@@ -92,7 +92,10 @@ function afterShrinkWrap (er, data, next) {
   var readPackageTree = require('npm/node_modules/read-package-tree')
   var dir = path.resolve(npm.dir, '..')
   readPackageTree(dir, function (er2, tree) {
+    /* istanbul ignore if */
     if (er2) {
+      // I don't believe this is reachable in practice since readPackageTree
+      // would have failed for npm's shrinkwrap code before here.
       console.error(er2)
       process.exit()
     }

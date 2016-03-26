@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "dom-walk": {
+      "version": "0.0.1",
+      "from": "dom-walk@0.0.1",
+      "resolved": "https://registry.npmjs.org/dom-walk/-/dom-walk-0.0.1.tgz"
+    },
+    "min-document": {
+      "version": "2.18.0",
+      "from": "min-document@2.18.0",
+      "resolved": "https://registry.npmjs.org/min-document/-/min-document-2.18.0.tgz",
+      "dependencies": {
+        "dom-walk": {
+          "version": "0.1.1",
+          "from": "dom-walk@>=0.1.0 <0.2.0",
+          "resolved": "https://registry.npmjs.org/dom-walk/-/dom-walk-0.1.1.tgz"
+        }
+      }
+    }
+  },
+  "exactlyHashes": {
+    "dom-walk@0.0.1": "094ece4bc59189df7d3da1dd785c763e14c5e664",
+    "min-document@2.18.0": "23051234b0ae8cc52af8ec6fbb8b4857e442842d",
+    "dom-walk@0.1.1": "672226dc74c8f799ad35307df936aba11acd6018"
+  }
+}

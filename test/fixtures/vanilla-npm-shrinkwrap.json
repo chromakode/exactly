@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "dom-walk": {
+      "version": "0.0.1",
+      "from": "dom-walk@0.0.1",
+      "resolved": "https://registry.npmjs.org/dom-walk/-/dom-walk-0.0.1.tgz"
+    },
+    "min-document": {
+      "version": "2.18.0",
+      "from": "min-document@2.18.0",
+      "resolved": "https://registry.npmjs.org/min-document/-/min-document-2.18.0.tgz",
+      "dependencies": {
+        "dom-walk": {
+          "version": "0.1.1",
+          "from": "dom-walk@>=0.1.0 <0.2.0",
+          "resolved": "https://registry.npmjs.org/dom-walk/-/dom-walk-0.1.1.tgz"
+        }
+      }
+    }
+  }
+}
