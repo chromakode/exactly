@@ -30,7 +30,7 @@ npm info using node@v4.4.0
 wrote npm-shrinkwrap.json
 added exactlyHashes to npm-shrinkwrap.json
 {
-  "qs": "ec1d1626b24278d99f0fdf4549e524e24eceeb26"
+  "qs@6.1.0": "ec1d1626b24278d99f0fdf4549e524e24eceeb26"
 }
 npm info ok
 ```
