@@ -18,6 +18,9 @@
   ],
   "author": "Max Goodman",
   "license": "MIT",
+  "engines": {
+    "node": ">=0.8.0"
+  },
   "bugs": {
     "url": "https://github.com/chromakode/exactly/issues"
   },
