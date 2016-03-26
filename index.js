@@ -1,15 +1,19 @@
 #!/usr/bin/env node
 var fs = require('fs')
 var path = require('path')
+var log = require('npm/node_modules/npmlog')
 
 var _shinkwrapData
 function getShrinkwrapData (cache) {
   if (cache === false || !_shinkwrapData) {
+    log.silly('exactly', 'loading shrinkwrap data')
     try {
       _shinkwrapData = JSON.parse(fs.readFileSync('npm-shrinkwrap.json', 'utf8'))
     } catch (er) {
       throw new Error('exactly: failed to read npm-shrinkwrap.json. ' + er)
     }
+  } else {
+    log.silly('exactly', 'using cached shrinkwrap data')
   }
   return _shinkwrapData
 }
@@ -31,12 +35,12 @@ function patchModule (module, cb) {
   patchCb(require.cache[require.resolve(module)], 'exports', cb)
 }
 
-function afterAdd (er, data, next) {
+function afterAdd (kind, er, data, next) {
   if (er) {
     return next(er, data)
   }
 
-  var log = require('npm/node_modules/npmlog')
+  log.silly('exactly', 'running hook after ' + kind)
 
   try {
     var pd = getShrinkwrapData()
@@ -59,6 +63,12 @@ function afterAdd (er, data, next) {
   next(er, data)
 }
 
+// these dummy functions allow coverage testing to verify that each monkeypatch
+// is actually used and tested
+function afterAddRemoteTarball (er, data, next) { afterAdd('add-remote-tarball', er, data, next) }
+function afterAddNamed (er, data, next) { afterAdd('add-named', er, data, next) }
+function afterAddLocal (er, data, next) { afterAdd('add-local', er, data, next) }
+
 function walkTreeForHashes (topNode) {
   var hashes = {}
   function visit (node) {
@@ -76,6 +86,8 @@ function afterShrinkWrap (er, data, next) {
   if (er) {
     return
   }
+
+  log.silly('exactly', 'running hook after shrinkwrap')
 
   var readPackageTree = require('npm/node_modules/read-package-tree')
   var dir = path.resolve(npm.dir, '..')
@@ -97,13 +109,14 @@ function afterShrinkWrap (er, data, next) {
 }
 
 // monkeypatch npm package fetches
-patchModule('npm/lib/cache/add-remote-tarball', afterAdd)
-patchModule('npm/lib/cache/add-named', afterAdd)
-patchModule('npm/lib/cache/add-local', afterAdd)
+patchModule('npm/lib/cache/add-remote-tarball', afterAddRemoteTarball)
+patchModule('npm/lib/cache/add-named', afterAddNamed)
+patchModule('npm/lib/cache/add-local', afterAddLocal)
 
 // monkeypatch npm shrinkwrap command
 var npm = require('npm')
 patchCb(npm, 'load', function (er, data, next) {
+  log.silly('exactly', 'running hook after load')
   patchModule('npm/lib/shrinkwrap', afterShrinkWrap)
   next(er, data)
 })
