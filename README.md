@@ -1,5 +1,10 @@
 # Exactly
 
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coverage-image]][coverage-url]
+[![npm][version-image]][version-url]
+[![npm][license-image]][license-url]
+
 Exactly extends npm to shrinkwrap dependencies by their SHA1 hash. This ensures
 that package data downloaded by npm exactly matches the packages at the time of
 shrinkwrapping.
@@ -58,3 +63,12 @@ npm info lifecycle qs@6.1.0~postinstall: qs@6.1.0
 
 npm info ok
 ```
+
+[travis-image]: https://img.shields.io/travis/chromakode/exactly/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/chromakode/exactly
+[coverage-image]: https://img.shields.io/coveralls/chromakode/exactly/master.svg?style=flat-square
+[coverage-url]: https://coveralls.io/github/chromakode/exactly?branch=master
+[version-image]: https://img.shields.io/npm/v/exactly.svg?style=flat-square
+[version-url]: https://www.npmjs.com/package/exactly
+[license-image]: https://img.shields.io/npm/l/exactly.svg?style=flat-square
+[license-url]: https://github.com/chromakode/exactly/blob/master/LICENSE
