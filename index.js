@@ -73,6 +73,9 @@ function walkTreeForHashes (topNode) {
 
 function afterShrinkWrap (er, data, next) {
   next(er, data)
+  if (er) {
+    return
+  }
 
   var readPackageTree = require('npm/node_modules/read-package-tree')
   var dir = path.resolve(npm.dir, '..')
