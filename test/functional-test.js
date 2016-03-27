@@ -119,12 +119,12 @@ describe('exactly', function () {
       )
   })
 
-  describe('with a shrinkwrap', function () {
+  describe('with an exactly shrinkwrap', function () {
     beforeEach(function () {
       return shell('cp ' + path.join(FIXTURES_DIR, 'expected-npm-shrinkwrap.json') + ' ' + path.join(WORK_DIR, 'npm-shrinkwrap.json'))
     })
 
-    it('successfully installs known valid remote packages with an exactly shrinkwrap', function () {
+    it('successfully installs known valid remote packages', function () {
       return shellExactly('install -d min-document@2.18.0 dom-walk@0.0.1')
         .then(function (result) {
           expect(result.stderr).toInclude('npm info exactly shasum matched: 094ece4bc59189df7d3da1dd785c763e14c5e664')
@@ -133,7 +133,7 @@ describe('exactly', function () {
         })
     })
 
-    it('aborts before installing an unknown remote package with an exactly shrinkwrap', function () {
+    it('aborts before installing an unknown remote package', function () {
       return shellExactly('install dom-walk@0.1.0')
         .then(
           function success () {
@@ -150,7 +150,7 @@ describe('exactly', function () {
         )
     })
 
-    it('successfully installs a known valid local package with an exactly shrinkwrap', function () {
+    it('successfully installs a known valid local package', function () {
       return shellWork('wget `npm v dom-walk@0.1.1 dist.tarball`')
         .then(function () { return shellExactly('install -d ./dom-walk-0.1.1.tgz') })
         .then(function (result) {
@@ -158,7 +158,7 @@ describe('exactly', function () {
         })
     })
 
-    it('aborts before installing an invalid local package with an exactly shrinkwrap', function () {
+    it('aborts before installing an invalid local package', function () {
       return shellWork('wget `npm v dom-walk@0.1.1 dist.tarball`')
         .then(function () { return shellWork('echo a >> ./dom-walk-0.1.1.tgz') })
         .then(function () { return shellExactly('install ./dom-walk-0.1.1.tgz') })
